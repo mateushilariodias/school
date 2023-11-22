@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de funcionário</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        form {
+            width: 80%;
+            max-width: 400px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .btn-primary {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cadastro de funcionário</h1>
+    <form action="/cadastro-funcionario" method="post">
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="nome">
+        <label for="email">E-mail</label>
+        <input type="email" name="email" id="email">
+        <label for="cpf">CPF</label>
+        <input type="text" name="cpf" id="cpf">
+        <label for="usuario">Usuário</label>
+        <input type="text" name="usuario" id="usuario">
+        <label for="senha">Senha</label>
+        <input type="password" name="senha" id="senha">
+        <input type="submit" value="Cadastrar">
+    </form>
+
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>CPF</th>
+            <th>Usuario</th>
+            <th>Excluir</th>
+            <th>Atualizar</th>
+        </tr>
+        {% for usuario in usuarios %}
+        <tr>
+            <td>{{usuario[1]}}</td>
+            <td>{{usuario[2]}}</td>
+            <td>{{usuario[0]}}</td>
+            <td>{{usuario[3]}}</td>
+            <td>
+                <a href={{url_for("excluirFuncionario", usuario=usuario[0])}}>Excluir</a>
+            </td>
+            <td>
+                <a href={{url_for("atualizarFuncionario", usuario=usuario[0])}}>Atualizar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>

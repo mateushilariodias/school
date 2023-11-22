@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home do aluno</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        span {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Home do aluno</h1>
+    <span>Aluno: CPF:</span>
+
+    <table>
+        <tr>
+            <th>Disciplina</th>
+            <th>Nota1</th>
+            <th>Nota2</th>
+            <th>Nota3</th>
+            <th>Nota4</th>
+            <th>Média</th>
+        </tr>
+        {% for historico in historicos %}
+        <tr>
+            <td>{{historico[0]}}</td>
+            <td>{{historico[1]}}</td>
+            <td>{{historico[2]}}</td>
+            <td>{{historico[3]}}</td>
+            <td>{{historico[4]}}</td>
+            <td></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

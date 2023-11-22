@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualização de funcionário</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        form {
+            width: 80%;
+            max-width: 400px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Atualização de aluno</h1>
+
+    <form action="/salvar-alteracao-funcionario" method="post">
+        {% for usuario in usuarios %}
+        <div>
+            <label for="nome">Nome:</label>
+            <input type="text" name="nome" id="nome" value={{usuario[0]}}>
+        </div>
+        <div>
+            <label for="email">E-mail:</label>
+            <input type="text" name="email" id="email" value={{usuario[1]}}>
+        </div>
+        <div>
+            <label for="cpf">CPF:</label>
+            <input type="text" name="cpf" id="cpf" value={{usuario[2]}}>
+        </div>
+        <div>
+            <label for="usuario">Usuário:</label>
+            <input type="text" name="usuario" id="usuario" value={{usuario[3]}}>
+        </div>
+        <div>
+            <label for="senha">Senha:</label>
+            <input type="password" name="senha" id="senha" value={{usuario[4]}}>
+        </div>
+        {% endfor %}
+        <div style="text-transform: uppercase;">
+            <input type="submit" value="Atualizar funcionário">
+        </div>
+    </form>
+
+</body>
+
+</html>

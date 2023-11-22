@@ -3,29 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login do funcionário</title>
+    <title>Cadastro de aluno</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f4f4f4;
             margin: 0;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
+            color: #333;
+        }
+
+        h1 {
+            margin-bottom: 20px;
         }
 
         form {
+            width: 80%;
+            max-width: 400px;
             background-color: #fff;
             padding: 20px;
-            border-radius: 5px;
+            border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         label {
             display: block;
             margin-bottom: 8px;
-            color: #333;
+            font-weight: bold;
         }
 
         input {
@@ -33,14 +41,14 @@
             padding: 10px;
             margin-bottom: 16px;
             box-sizing: border-box;
-            border: 1px solid #ccc;
+            border: 1px solid #ddd;
             border-radius: 4px;
         }
 
         .btn-primary {
             background-color: #007BFF;
             color: #fff;
-            padding: 10px 20px;
+            padding: 10px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
@@ -52,12 +60,37 @@
     </style>
 </head>
 <body>
-    <form action="" method="post">
-        <label for="usuario">Usuário</label>
-        <input type="text" name="usuario" id="usuario">
+    <h1>Cadastro de aluno</h1>
+    <form action="/cadastro-aluno" method="post">
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="nome">
+        <label for="cpf">CPF</label>
+        <input type="text" name="cpf" id="cpf">
         <label for="senha">Senha</label>
         <input type="password" name="senha" id="senha">
-        <input class="btn btn-primary" type="submit" value="Logar">
+        <input class="btn btn-primary" type="submit" value="Cadastrar">
     </form>
+
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Excluir</th>
+            <th>Atualizar</th>
+        </tr>
+        {% for cpf in cpfs %}
+        <tr>
+            <td>{{cpf[1]}}</td>
+            <td>{{cpf[0]}}</td>
+            <td>
+                <a href={{url_for("excluirAluno", cpf=cpf[0])}}>Excluir</a>
+            </td>
+            <td>
+                <a href={{url_for("atualizarAluno", cpf=cpf[0])}}>Atualizar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
 </body>
 </html>
