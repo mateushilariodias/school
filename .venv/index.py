@@ -199,28 +199,79 @@ def excluirFuncionario(usuario):
 def atualizarFuncionario(usuario):
     db = mysql.connector.connect(**db_config)
     mycursor = db.cursor()
-    query = "SELECT cpf, nome, email, usuario, senha FROM mateus_TB_employee WHERE usuario = '" + usuario + "'"
-    mycursor.execute(query)
+    query = "SELECT cpf, nome, email, usuario, senha FROM mateus_TB_employee WHERE usuario = %s"
+    mycursor.execute(query, (usuario,))
     employee = mycursor.fetchall()
     return render_template('atualizacao-funcionario.html', usuarios=employee)
 
 @app.route('/salvar-alteracao-funcionario', methods=['POST'])
 def salvarAlteracaoFuncionario():
     usuario = request.form['usuario']
+    cpf = request.form['cpf']
     nome = request.form['nome']
     email = request.form['email']
 
     db = mysql.connector.connect(**db_config)
     mycursor = db.cursor()
     query = "UPDATE mateus_TB_employee SET nome = %s, email = %s, cpf = %s WHERE usuario = %s"
-    values = (nome, email, usuario)
+    values = (nome, email, cpf, usuario)
     mycursor.execute(query, values)
     db.commit()
     return redirect(url_for('cadastroDeFuncionario'))
 
+@app.route('/cadastro-disciplina', methods=['POST'])
+def cadastrarDisciplina():
+    disciplina = request.form['disciplina']
+
+    db = mysql.connector.connect(**db_config)
+    mycursor = db.cursor()
+
+    query = 'INSERT INTO mateus_TB_discipline (disciplina) VALUES (%s)'
+    values = (disciplina,)
+
+    mycursor.execute(query, values)
+    db.commit()
+
+    return redirect(url_for('cadastroDeDisciplina'))
+
 @app.route('/cadastro-disciplina')
-def cadastroDisciplinaGet():
-    return render_template('cadastro-disciplina.html')
+def cadastroDeDisciplina():
+    db = mysql.connector.connect(**db_config)
+    mycursor = db.cursor()
+    query = 'SELECT disciplina FROM mateus_TB_discipline'
+    mycursor.execute(query)
+    disciplinas = mycursor.fetchall()
+    return render_template('cadastro-disciplina.html', disciplinas=disciplinas)
+
+@app.route('/excluir-disciplina/<disciplina>')
+def excluirDisciplina(disciplina):
+    db = mysql.connector.connect(**db_config)
+    mycursor = db.cursor()
+    query = "DELETE FROM mateus_TB_discipline WHERE disciplina = %s"
+    mycursor.execute(query, (disciplina,))
+    db.commit()
+    return redirect(url_for('cadastroDeDisciplina'))
+
+@app.route('/atualizar-disciplina/<disciplina>')
+def atualizarDisciplina(disciplina):
+    db = mysql.connector.connect(**db_config)
+    mycursor = db.cursor()
+    query = "SELECT disciplina FROM mateus_TB_discipline WHERE disciplina = %s"
+    mycursor.execute(query, (disciplina,))
+    disciplinas = mycursor.fetchall()
+    return render_template('atualizacao-disciplina.html', disciplinas=disciplinas)
+
+@app.route('/salvar-alteracao-disciplina', methods=['POST'])
+def salvarAlteracaoDisciplina():
+    disciplina = request.form['disciplina']
+
+    db = mysql.connector.connect(**db_config)
+    mycursor = db.cursor()
+    query = "INSERT INTO mateus_TB_discipline set disciplina = '" + disciplina + "' WHERE disciplina = "
+    mycursor.execute(query)
+    db.commit()
+
+    return redirect(url_for('cadastroDeDisciplina'))
 
 @app.route('/cadastro-nota')
 def cadastroNotaGet():

@@ -91,10 +91,10 @@
             <td>{{usuario[0]}}</td>
             <td>{{usuario[3]}}</td>
             <td>
-                <a href={{url_for("excluirFuncionario", usuario=usuario[0])}}>Excluir</a>
+                <a href={{url_for("excluirFuncionario", usuario=usuario[3])}}>Excluir</a>
             </td>
             <td>
-                <a href={{url_for("atualizarFuncionario", usuario=usuario[0])}}>Atualizar</a>
+                <a href={{url_for("atualizarFuncionario", usuario=usuario[3])}}>Atualizar</a>
             </td>
         </tr>
         {% endfor %}

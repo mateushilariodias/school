@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de disciplina</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        form {
+            width: 80%;
+            max-width: 400px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .btn-primary {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cadastro de aluno</h1>
+    <form action="/cadastro-disciplina" method="post">
+        <label for="disciplina">Disciplina</label>
+        <input type="text" name="disciplina" id="disciplina">
+        <input type="submit" value="Cadastrar">
+    </form>
+
+    <table>
+        <tr>
+            <th>Disciplina</th>
+            <th>Excluir</th>
+            <th>Atualizar</th>
+        </tr>
+        {% for disciplina in disciplinas %}
+        <tr>
+            <td>{{disciplina[0]}}</td>
+            <td>
+                <a href={{url_for("excluirDisciplina", disciplina=disciplina[0])}}>Excluir</a>
+            </td>
+            <td>
+                <a href={{url_for("atualizarDisciplina", disciplina=disciplina[0])}}>Atualizar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>

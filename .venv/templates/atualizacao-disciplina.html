@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atualização de funcionário</title>
+    <title>Atualização de disciplina</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -62,33 +62,17 @@
 </head>
 
 <body>
-    <h1>Atualização de aluno</h1>
+    <h1>Atualização de disciplina</h1>
 
-    <form action="/salvar-alteracao-funcionario" method="post">
-        {% for usuario in usuarios %}
+    <form action="/salvar-alteracao-disciplina" method="post">
+        {% for disciplina in disciplinas %}
         <div>
             <label for="nome">Nome:</label>
-            <input type="text" name="nome" id="nome" value={{usuario[1]}}>
-        </div>
-        <div>
-            <label for="email">E-mail:</label>
-            <input type="text" name="email" id="email" value={{usuario[2]}}>
-        </div>
-        <div>
-            <label for="cpf">CPF:</label>
-            <input type="text" name="cpf" id="cpf" value={{usuario[0]}}>
-        </div>
-        <div>
-            <label for="usuario">Usuário:</label>
-            <input type="text" name="usuario" id="usuario" value={{usuario[3]}}>
-        </div>
-        <div>
-            <label for="senha">Senha:</label>
-            <input type="password" name="senha" id="senha" value={{usuario[4]}}>
+            <input type="text" name="nome" id="nome" value={{disciplina[0]}}>
         </div>
         {% endfor %}
         <div style="text-transform: uppercase;">
-            <input type="submit" value="Atualizar funcionário">
+            <input type="submit" value="Atualizar usuário">
         </div>
     </form>
 
