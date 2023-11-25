@@ -50,7 +50,7 @@
 </head>
 <body>
     <h1>Home do aluno</h1>
-    <span>Aluno: CPF:</span>
+    <span>Aluno: {{ aluno_info[1] }} CPF: {{ aluno_info[0] }}</span>
 
     <table>
         <tr>
@@ -61,14 +61,14 @@
             <th>Nota4</th>
             <th>Média</th>
         </tr>
-        {% for historico in historicos %}
+        {% for grade in grades %}
         <tr>
-            <td>{{historico[0]}}</td>
-            <td>{{historico[1]}}</td>
-            <td>{{historico[2]}}</td>
-            <td>{{historico[3]}}</td>
-            <td>{{historico[4]}}</td>
-            <td></td>
+            <td>{{ grade[0] }}</td>
+            <td>{{ grade[1] }}</td>
+            <td>{{ grade[2] }}</td>
+            <td>{{ grade[3] }}</td>
+            <td>{{ grade[4] }}</td>
+            <td>{{ grade[5] }}</td>
         </tr>
         {% endfor %}
     </table>

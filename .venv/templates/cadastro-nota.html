@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Notas</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #333;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        form {
+            width: 80%;
+            max-width: 400px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        select,
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            min-width: 100px;
+            /* Defina uma largura mínima para as células */
+        }
+
+        th {
+            background-color: #007BFF;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>Cadastro de Notas</h1>
+    <form action="/cadastro-nota" method="post">
+        <label for="cpf">CPF:</label>
+        <select name="cpf">
+            {% for student in students %}
+            <option value={{student[0]}}>{{student[0]}}</option>
+            {% endfor %}
+        </select>
+
+        <label for="disciplina">Disciplina:</label>
+        <select name="disciplina" required>
+            {% for disciplina in disciplinas %}
+            <option value={{disciplina[0]}}>{{disciplina[0]}}</option>
+            {% endfor %}
+        </select>
+
+        <label for="nome">Nome:</label>
+        <select name="nome" required>
+            {% for student in students %}
+            <option value={{student[0]}}>{{student[1]}}</option>
+            {% endfor %}
+        </select>
+
+        <label for="nota1">Nota 1:</label>
+        <input type="number" name="nota1" required>
+
+        <label for="nota2">Nota 2:</label>
+        <input type="number" name="nota2" required>
+
+        <label for="nota3">Nota 3:</label>
+        <input type="number" name="nota3" required>
+
+        <label for="nota4">Nota 4:</label>
+        <input type="number" name="nota4" required>
+
+        <input type="submit" value="Cadastrar Nota">
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var cpfInput = $('#cpf');
+            var nomeInput = $('#nome');
+    
+            nomeInput.change(function () {
+                var nomeValue = nomeInput.val();
+    
+                $.ajax({
+                    type: 'GET',
+                    url: '/get-cpf/' + nomeValue,
+                    success: function (data) {
+                        cpfInput.val(data.cpf);
+                        cpfInput.trigger('input');
+                    },
+                    error: function (error) {
+                        console.error(error.responseText);
+                    }
+                });
+            });
+        });
+    </script>    
+
+    <table>
+        <thead>
+            <tr>
+                <th>CPF</th>
+                <th>Disciplina</th>
+                <th>Nome</th>
+                <th>Nota 1</th>
+                <th>Nota 2</th>
+                <th>Nota 3</th>
+                <th>Nota 4</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for nota in notas %}
+            <tr>
+                <td>{{ nota[0] }}</td>
+                <td>{{ nota[1] }}</td>
+                <td>{{ nota[2] }}</td>
+                <td>{{ nota[3] }}</td>
+                <td>{{ nota[4] }}</td>
+                <td>{{ nota[5] }}</td>
+                <td>{{ nota[6] }}</td>
+                <td>
+                    <a href="{{ url_for('atualizarNota', cpf=nota[0], disciplina=nota[1]) }}">Atualizar</a>
+                    <a href="{{ url_for('excluirNota', cpf=nota[0], disciplina=nota[1]) }}">Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+
+</html>

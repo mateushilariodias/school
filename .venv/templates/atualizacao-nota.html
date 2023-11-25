@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atualização de disciplina</title>
+    <title>Atualização de Nota</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -62,21 +62,39 @@
 </head>
 
 <body>
-    <h1>Atualização de disciplina</h1>
+    <h1>Atualização de Nota</h1>
 
-    <form action="/salvar-alteracao-disciplina" method="post">
-        {% for disciplina in disciplinas %}
+    <form action="/salvar-alteracao-nota" method="post">
         <div>
-            <label for="nome">Disciplina:</label>
-            <input type="text" name="disciplina" id="disciplina" value={{disciplina[0]}}>
+            <label for="cpf">CPF:</label>
+            <input type="text" name="cpf" id="cpf" value="{{notas[0]}}" readonly>
         </div>
         <div>
-            <label for="disciplina_anterior">Disciplina Anterior:</label>
-            <input type="hidden" name="disciplina_anterior" value={{disciplina[0]}}>
+            <label for="disciplina">Disciplina:</label>
+            <input type="text" name="disciplina" id="disciplina" value="{{notas[1]}}" readonly>
         </div>
-        {% endfor %}
-        <div style="text-transform: uppercase;">
-            <input type="submit" value="Atualizar usuário">
+        <div>
+            <label for="nome">Nome:</label>
+            <input type="text" name="nome" id="nome" value="{{notas[2]}}" readonly>
+        </div>
+        <div>
+            <label for="nota1">Nota 1:</label>
+            <input type="number" name="nota1" id="nota1" value="{{notas[3]}}" required>
+        </div>
+        <div>
+            <label for="nota2">Nota 2:</label>
+            <input type="number" name="nota2" id="nota2" value="{{notas[4]}}" required>
+        </div>
+        <div>
+            <label for="nota3">Nota 3:</label>
+            <input type="number" name="nota3" id="nota3" value="{{notas[5]}}" required>
+        </div>
+        <div>
+            <label for="nota4">Nota 4:</label>
+            <input type="number" name="nota4" id="nota4" value="{{notas[6]}}" required>
+        </div>
+        <div>
+            <input type="submit" value="Alterar notas">
         </div>
     </form>
 
