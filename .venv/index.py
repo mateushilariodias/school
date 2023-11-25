@@ -407,17 +407,17 @@ def get_notas():
     conn.close()
     return notas
 
-@app.route('/get-cpf/<nome>')
 def get_cpf_by_name(nome):
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor()
 
     query = 'SELECT cpf FROM mateus_TB_student WHERE nome = %s'
     cursor.execute(query, (nome,))
-    cpf = cursor.fetchone()[0] if cursor.rowcount > 0 else None
+    result = cursor.fetchone()
+    aluno = {'cpf': result[0], 'nome': nome} if result else None
 
     conn.close()
-    return jsonify({'cpf': cpf})
+    return aluno
 
 @app.route('/cadastro-nota', methods=['GET', 'POST'])
 def notasAluno():
@@ -427,9 +427,17 @@ def notasAluno():
         notas = get_notas()
         return render_template('cadastro-nota.html', students=estudantes, disciplinas=disciplinas, notas=notas)
     elif request.method == 'POST':
-        cpf = request.form['cpf']
+        nome_selecionado = request.form['nome']
+
+        aluno = get_cpf_by_name(nome_selecionado)
+    
+        if aluno is None:
+            return redirect(url_for('notasAluno', error='Aluno não encontrado'))
+    
+        cpf = aluno['cpf']
+        nome = aluno['nome']
+
         disciplina = request.form['disciplina']
-        nome = request.form['nome']
 
         conn = mysql.connector.connect(**db_config)
         cursor = conn.cursor()
@@ -447,11 +455,6 @@ def notasAluno():
             nota2 = request.form['nota2']
             nota3 = request.form['nota3']
             nota4 = request.form['nota4']
-
-            # Obtendo o nome do aluno
-            query_nome_aluno = 'SELECT nome FROM mateus_TB_student WHERE cpf = %s'
-            cursor.execute(query_nome_aluno, (cpf,))
-            nome = cursor.fetchone()[0]
 
             query_insert = '''
                 INSERT INTO mateus_TB_grade (cpf, disciplina, nome, nota1, nota2, nota3, nota4)

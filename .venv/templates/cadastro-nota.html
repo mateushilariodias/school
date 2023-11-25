@@ -90,13 +90,6 @@
 <body>
     <h1>Cadastro de Notas</h1>
     <form action="/cadastro-nota" method="post">
-        <label for="cpf">CPF:</label>
-        <select name="cpf">
-            {% for student in students %}
-            <option value={{student[0]}}>{{student[0]}}</option>
-            {% endfor %}
-        </select>
-
         <label for="disciplina">Disciplina:</label>
         <select name="disciplina" required>
             {% for disciplina in disciplinas %}
@@ -107,7 +100,7 @@
         <label for="nome">Nome:</label>
         <select name="nome" required>
             {% for student in students %}
-            <option value={{student[0]}}>{{student[1]}}</option>
+            <option value="{{ student[1] }}" data-cpf="{{ student[0] }}">{{ student[1] }}</option>
             {% endfor %}
         </select>
 
@@ -125,31 +118,6 @@
 
         <input type="submit" value="Cadastrar Nota">
     </form>
-
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            var cpfInput = $('#cpf');
-            var nomeInput = $('#nome');
-    
-            nomeInput.change(function () {
-                var nomeValue = nomeInput.val();
-    
-                $.ajax({
-                    type: 'GET',
-                    url: '/get-cpf/' + nomeValue,
-                    success: function (data) {
-                        cpfInput.val(data.cpf);
-                        cpfInput.trigger('input');
-                    },
-                    error: function (error) {
-                        console.error(error.responseText);
-                    }
-                });
-            });
-        });
-    </script>    
 
     <table>
         <thead>
