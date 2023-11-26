@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login de aluno</title>
+    <title>Login de Aluno</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -13,13 +13,20 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
+            color: #fff; /* Cor do texto */
+        }
+
+        .container {
+            text-align: center;
         }
 
         form {
             background-color: #fff;
             padding: 20px;
-            border-radius: 5px;
+            border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px; /* Largura do formulário */
+            margin-top: -40px; /* Ajuste de margem para centralizar */
         }
 
         label {
@@ -38,7 +45,7 @@
         }
 
         .btn-primary {
-            background-color: #007BFF;
+            background-color: #800080; /* Cor roxa para o botão */
             color: #fff;
             padding: 10px 20px;
             border: none;
@@ -47,18 +54,26 @@
         }
 
         .btn-primary:hover {
-            background-color: #0056b3;
+            background-color: #4B0082; /* Cor roxa mais escura ao passar o mouse */
+        }
+
+        p {
+            font-size: 1.2em; /* Tamanho do texto */
+            margin-bottom: 20px;
+            color: #333;
         }
     </style>
 </head>
 <body>
-    <p>{{error}}</p>
-    <form action="" method="post">
-        <label for="cpf">CPF</label>
-        <input type="text" name="cpf" id="cpf">
-        <label for="senha">Senha</label>
-        <input type="password" name="senha" id="senha">
-        <input type="submit" value="Logar">
-    </form>
+    <div class="container">
+        <form action="" method="post">
+            <p>Insira seu CPF e senha para acessar o portal do aluno.</p>
+            <label for="cpf">CPF</label>
+            <input type="text" name="cpf" id="cpf">
+            <label for="senha">Senha</label>
+            <input type="password" name="senha" id="senha">
+            <input type="submit" class="btn-primary" value="Logar">
+        </form>
+    </div>
 </body>
 </html>

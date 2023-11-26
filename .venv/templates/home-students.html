@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home do aluno</title>
+    <title>Home do Aluno</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
+            background-color: #f4f4f4; /* Cor roxa */
             margin: 0;
             display: flex;
             flex-direction: column;
@@ -15,6 +15,10 @@
             justify-content: center;
             height: 100vh;
             color: #333;
+        }
+
+        .container {
+            text-align: center;
         }
 
         h1 {
@@ -29,48 +33,59 @@
         table {
             width: 80%;
             border-collapse: collapse;
-            margin-top: 20px;
+            margin: 0 auto; /* Adiciona margens automáticas para centralizar a tabela */
+            background-color: #800080; /* Cor roxa */
         }
 
         th, td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
+            color: #333;
         }
 
         th {
-            background-color: #007BFF;
+            background-color: #800080;
             color: #fff;
         }
 
         tr:nth-child(even) {
             background-color: #f2f2f2;
         }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: #333;
+        }
     </style>
 </head>
 <body>
-    <h1>Home do aluno</h1>
-    <span>Aluno: {{ aluno_info[1] }} CPF: {{ aluno_info[0] }}</span>
+    <div class="container">
+        <h1>Portal do Aluno</h1>
+        <p>Bem-vindo ao seu portal acadêmico personalizado. Aqui, você pode visualizar suas notas, disciplinas e desempenho acadêmico.</p>
+        <span>Aluno: {{ aluno_info[1] }} CPF: {{ aluno_info[0] }}</span>
 
-    <table>
-        <tr>
-            <th>Disciplina</th>
-            <th>Nota1</th>
-            <th>Nota2</th>
-            <th>Nota3</th>
-            <th>Nota4</th>
-            <th>Média</th>
-        </tr>
-        {% for grade in grades %}
-        <tr>
-            <td>{{ grade[0] }}</td>
-            <td>{{ grade[1] }}</td>
-            <td>{{ grade[2] }}</td>
-            <td>{{ grade[3] }}</td>
-            <td>{{ grade[4] }}</td>
-            <td>{{ grade[5] }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+        <table>
+            <tr>
+                <th>Disciplina</th>
+                <th>Nota1</th>
+                <th>Nota2</th>
+                <th>Nota3</th>
+                <th>Nota4</th>
+                <th>Média</th>
+            </tr>
+            {% for grade in grades %}
+            <tr>
+                <td>{{ grade[0] }}</td>
+                <td>{{ grade[1] }}</td>
+                <td>{{ grade[2] }}</td>
+                <td>{{ grade[3] }}</td>
+                <td>{{ grade[4] }}</td>
+                <td>{{ grade[5] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 </body>
 </html>

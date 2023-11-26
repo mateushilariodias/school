@@ -20,6 +20,7 @@
 
         h1 {
             margin-bottom: 20px;
+            color: #333;
         }
 
         form {
@@ -48,7 +49,7 @@
         }
 
         input[type="submit"] {
-            background-color: #007BFF;
+            background-color: #800080; /* Cor roxa para o botão */
             color: #fff;
             padding: 10px;
             border: none;
@@ -57,7 +58,7 @@
         }
 
         input[type="submit"]:hover {
-            background-color: #0056b3;
+            background-color: #4B0082; /* Cor roxa mais escura ao passar o mouse */
         }
 
         table {
@@ -72,19 +73,33 @@
             padding: 8px;
             text-align: left;
             min-width: 100px;
-            /* Defina uma largura mínima para as células */
+            color: #333;
         }
 
         th {
-            background-color: #007BFF;
+            background-color: #800080;
             color: #fff;
         }
 
         tr:nth-child(even) {
             background-color: #f2f2f2;
         }
-    </style>
 
+        a.update-link {
+            text-decoration: none;
+            color: #800080; /* Roxo para o link de atualizar */
+            margin-right: 10px;
+        }
+
+        a.delete-link {
+            text-decoration: none;
+            color: #800080; /* Roxo para o link de excluir */
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>
@@ -143,8 +158,8 @@
                 <td>{{ nota[5] }}</td>
                 <td>{{ nota[6] }}</td>
                 <td>
-                    <a href="{{ url_for('atualizarNota', cpf=nota[0], disciplina=nota[1]) }}">Atualizar</a>
-                    <a href="{{ url_for('excluirNota', cpf=nota[0], disciplina=nota[1]) }}">Excluir</a>
+                    <a class="update-link" href="{{ url_for('atualizarNota', cpf=nota[0], disciplina=nota[1]) }}">Atualizar</a>
+                    <a class="delete-link" href="{{ url_for('excluirNota', cpf=nota[0], disciplina=nota[1]) }}">Excluir</a>
                 </td>
             </tr>
             {% endfor %}

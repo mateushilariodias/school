@@ -19,6 +19,7 @@
 
         h1 {
             margin-bottom: 20px;
+            color: #333;
         }
 
         form {
@@ -46,7 +47,7 @@
         }
 
         .btn-primary {
-            background-color: #007BFF;
+            background-color: #800080; /* Cor roxa para o botão */
             color: #fff;
             padding: 10px;
             border: none;
@@ -55,17 +56,44 @@
         }
 
         .btn-primary:hover {
-            background-color: #0056b3;
+            background-color: #4B0082; /* Cor roxa mais escura ao passar o mouse */
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            color: #333;
+        }
+
+        th {
+            background-color: #800080;
+            color: #fff;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
         }
     </style>
 </head>
 <body>
-    <h1>Cadastro de aluno</h1>
+    <h1>Cadastro de disciplina</h1>
     <form action="/cadastro-disciplina" method="post">
         <label for="disciplina">Disciplina</label>
         <input type="text" name="disciplina" id="disciplina">
-        <input type="submit" value="Cadastrar">
+        <input class="btn btn-primary" type="submit" value="Cadastrar">
     </form>
+
+    <p>Lista de disciplinas cadastradas:</p>
 
     <table>
         <tr>

@@ -47,7 +47,7 @@
         }
 
         input[type="submit"] {
-            background-color: #007BFF;
+            background-color: #800080;
             color: #fff;
             padding: 10px;
             border: none;
@@ -56,7 +56,7 @@
         }
 
         input[type="submit"]:hover {
-            background-color: #0056b3;
+            background-color: #4B0082;
         }
     </style>
 </head>
@@ -70,8 +70,8 @@
             <label for="nome">Disciplina:</label>
             <input type="text" name="disciplina" id="disciplina" value={{disciplina[0]}}>
         </div>
-        <div>
-            <label for="disciplina_anterior">Disciplina Anterior:</label>
+        <div hidden>
+            <label for="disciplina_anterior" hidden>Disciplina Anterior:</label>
             <input type="hidden" name="disciplina_anterior" value={{disciplina[0]}}>
         </div>
         {% endfor %}
